@@ -58,31 +58,29 @@
 
 </div>
 <script>
-const token="87cf5aeb";
 
-function getCamLink(alias) {
-    return `https://www.ipcamlive.com/player/player.php?alias=${alias}&autoplay=1&token=${token}`
-}
+    const token = "87cf5aeb";
 
-const camDivs = document.getElementsByClassName('cam');
+    function getCamLink(alias) {
+        return `https://www.ipcamlive.com/player/player.php?alias=${alias}&autoplay=1&token=${token}`
+    }
 
-for (let camDiv of camDivs) {
-    console.log(camDiv);
-    const frame = document.createElement("iframe");
-    const camLink =  getCamLink(camDiv.id);
-    frame.setAttribute("src", camLink);
-    frame.setAttribute("width","1024px");
-    frame.setAttribute("height","683px");
-    frame.setAttribute("frameborder", "0");
-    frame.style.width='600px';
-    frame.style.height='400px';
+    const camDivs = document.getElementsByClassName('cam');
 
-
-    camDiv.appendChild(frame);
-}
+    for (let camDiv of camDivs) {
+        console.log(camDiv);
+        const frame = document.createElement("iframe");
+        const camLink = getCamLink(camDiv.id);
+        frame.setAttribute("src", camLink);
+        frame.setAttribute("width", "1024px");
+        frame.setAttribute("height", "683px");
+        frame.setAttribute("frameborder", "0");
+        frame.style.width = '600px';
+        frame.style.height = '400px';
 
 
-
+        camDiv.appendChild(frame);
+    }
 
 
 </script>
