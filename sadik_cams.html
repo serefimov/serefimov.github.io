@@ -59,27 +59,42 @@
 </div>
 <script>
 
-    const token = "87cf5aeb";
-
-    function getCamLink(alias) {
+    function getCamLink(alias, token) {
         return `https://www.ipcamlive.com/player/player.php?alias=${alias}&autoplay=1&token=${token}`
     }
 
     const camDivs = document.getElementsByClassName('cam');
+    const xhr = new XMLHttpRequest();
+    xhr.open('GET', `https://cors-anywhere.herokuapp.com/https://www.ipcamlive.com/${camDivs[0].id}`, false);
+    xhr.send();
+    let htmlToParse = "";
+    if (xhr.status != 200) {
+        // показываем ошибку
+        alert(xhr.status + ': ' + xhr.statusText); // вывод ошибки
+    } else {
+        htmlToParse = xhr.responseText; // responseText -- текст ответа.
 
-    for (let camDiv of camDivs) {
-        console.log(camDiv);
-        const frame = document.createElement("iframe");
-        const camLink = getCamLink(camDiv.id);
-        frame.setAttribute("src", camLink);
-        frame.setAttribute("width", "1024px");
-        frame.setAttribute("height", "683px");
-        frame.setAttribute("frameborder", "0");
-        frame.style.width = '600px';
-        frame.style.height = '400px';
+        const regex = /var token = '(([0-9,a-f]){8})'/; // регулярку набросал
 
 
-        camDiv.appendChild(frame);
+
+        const token = htmlToParse.match(regex)[1];
+
+
+        for (let camDiv of camDivs) {
+            console.log(camDiv);
+            const frame = document.createElement("iframe");
+            const camLink = getCamLink(camDiv.id, token);
+            frame.setAttribute("src", camLink);
+            frame.setAttribute("width", "720px");
+            frame.setAttribute("height", "480px");
+            frame.setAttribute("frameborder", "0");
+            frame.style.width = '720px';
+            frame.style.height = '480px';
+
+
+            camDiv.appendChild(frame);
+        }
     }
 
 
