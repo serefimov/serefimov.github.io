@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <title>Камеры Варвары</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+          integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+</head>
+<body>
+<div class="container-fluid p-1">
+
+    <div class="row">
+        <div class="col-lg">
+            <h5>Вход</h5>
+            <div class="cam" id="5dacac9729ce0"></div>
+        </div>
+        <div class="col-lg">
+            <h5>Веревка</h5>
+            <div class="cam" id="5daca55a6c7e1"></div>
+        </div>
+        <div class="col-lg">
+            <h5>Выход</h5>
+            <div class="cam" id="5daca5e30e3d9"></div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg">
+            <h5>Тут танцуют</h5>
+            <div class="cam" id="5daca67e0a572"></div>
+        </div>
+
+        <div class="col-lg">
+            <h5>Тут рисуют</h5>
+            <div class="cam" id="5dac95b7a1a9d"></div>
+        </div>
+        <div class="col-lg">
+            <h5>Спальня</h5>
+            <div class="cam" id="5dacad039c0ca"></div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg">
+            <h5>Спальня 2</h5>
+            <div class="cam" id="5dacad6cbc1cb"></div>
+        </div>
+        <div class="col-lg">
+            <h5>5dacadb8b003f</h5>
+            <div class="cam" id="5dacadb8b003f"></div>
+
+        </div>
+        <div class="col-lg">
+            <h5>Столовая</h5>
+            <div class="cam" id="5dacae4067709"></div>
+
+        </div>
+    </div>
+
+</div>
+<script>
+const token="87cf5aeb";
+
+function getCamLink(alias) {
+    return `https://www.ipcamlive.com/player/player.php?alias=${alias}&autoplay=1&token=${token}`
+}
+
+const camDivs = document.getElementsByClassName('cam');
+
+for (let camDiv of camDivs) {
+    console.log(camDiv);
+    const frame = document.createElement("iframe");
+    const camLink =  getCamLink(camDiv.id);
+    frame.setAttribute("src", camLink);
+    frame.setAttribute("width","1024px");
+    frame.setAttribute("height","683px");
+    frame.setAttribute("frameborder", "0");
+    frame.style.width='600px';
+    frame.style.height='400px';
+
+
+    camDiv.appendChild(frame);
+}
+
+
+
+
+
+</script>
+</body>
+</html>
