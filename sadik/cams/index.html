@@ -59,14 +59,14 @@
 
     const camDivs = document.getElementsByClassName('cam');
     const xhr = new XMLHttpRequest();
-    xhr.open('GET', `https://cors-anywhere.herokuapp.com/https://www.ipcamlive.com/${camDivs[0].id}`, false);
+    xhr.open('GET', `https://api.allorigins.win/get?url=https://www.ipcamlive.com/${camDivs[0].id}`, false);
     xhr.send();
     let htmlToParse = "";
     if (xhr.status != 200) {
         // показываем ошибку
         alert(xhr.status + ': ' + xhr.statusText); // вывод ошибки
     } else {
-        htmlToParse = xhr.responseText; // responseText -- текст ответа.
+        htmlToParse = JSON.parse(xhr.responseText).contents; // responseText -- текст ответа.
 
         const regex = /var token = '(([0-9,a-f]){8})'/; // регулярку набросал
 
